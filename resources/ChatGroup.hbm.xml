@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="org.miguelmarzo.backend.preexamen.models">
+
+	<class name="ChatGroup" table="chatGroup">
+		<id name="id" column="id">
+			<generator class="identity" />
+		</id>
+		<property name="name" />
+		<property name="description" />
+		<list name="users" table="chat_users" cascade="all">
+			<key column="idUser" />
+			<list-index column="list_order" />
+			<many-to-many class="User" column="id" />
+		</list>
+		<list name="messages" table="chat_messages" cascade="all">
+			<key column="idMessage" />
+			<list-index column="list_order" />
+			<many-to-many class="Message" column="id" />
+		</list>
+
+	</class>
+
+</hibernate-mapping>
